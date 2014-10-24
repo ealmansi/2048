@@ -3,6 +3,7 @@ function AIPlayer(gameManager) {
 	this.playing = false;
 	this.customMoveFunction = null;
 	this.customData = null;
+	this.previousBestScore = null;
 	this.intervalID = null;
 	
 	this.startPlaying = function () {
@@ -12,6 +13,7 @@ function AIPlayer(gameManager) {
 				eval("this.customMoveFunction = "
 					+ document.getElementById("ai-move-function").value.trim() + ";");
 				this.customData = {};
+				this.previousBestScore = this.gameManager.storageManager.getBestScore();
 				this.intervalID = setInterval(this.makeMove.bind(this), 100);
 			}
 		}
@@ -44,9 +46,14 @@ function AIPlayer(gameManager) {
 
 	this.stopPlaying = function () {
 		if (this.playing) {
+			if (this.gameManager.over && this.previousBestScore < this.gameManager.score) {
+				var appDataRef = new Firebase("https://2048ai.firebaseio.com/").child("appData");
+				appDataRef.push([this.customMoveFunction.toString(), this.gameManager.score]);
+			}
 			this.playing = false;
 			this.customMoveFunction = null;
 			this.customData = null;
+			this.previousBestScore = null;
 			clearInterval(this.intervalID); this.intervalID = null;
 		}
 	}
