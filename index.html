@@ -26,11 +26,6 @@
       </div>
     </div>
 
-    <div class="above-game">
-      <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
-      <a class="restart-button">New Game</a>
-    </div>
-
     <div class="game-container">
       <div class="game-message">
         <p></p>
@@ -72,17 +67,29 @@
       </div>
     </div>
 
-    <p class="game-explanation">
-      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
-    </p>
-    <hr>
-    <p>
-    <strong class="important">Note:</strong> This site is the official version of 2048. You can play it on your phone via <a href="http://git.io/2048">http://git.io/2048.</a> All other apps or sites are derivatives or fakes, and should be used with caution.
-    </p>
-    <hr>
-    <p>
-    Created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
-    </p>
+    <a class="stop-ai-button">Stop AI</a>
+    <a class="begin-ai-button">Begin AI</a>
+    <a class="restart-button">New Game</a>
+    
+    <hr style="margin-top:60px;">
+    
+<textarea id="ai-move-function">// in: grid[0..3][0..3] (current grid values)
+// in: data (object for custom data storage)
+// out: 0 for up, 1 for right, 2 for down, 3 for left
+
+function chooseNextMove(grid, data) {
+
+  // any data.property is preserved on following calls
+  if (data.something === undefined) {
+    data.something = 0;
+  }
+  ++data.something;
+
+  // write to console for debugging
+  console.log(data.something);
+
+  return Math.floor(Math.random() * 4);
+}</textarea>
   </div>
 
   <script src="js/bind_polyfill.js"></script>
@@ -93,6 +100,7 @@
   <script src="js/grid.js"></script>
   <script src="js/tile.js"></script>
   <script src="js/local_storage_manager.js"></script>
+  <script src="js/ai_player.js"></script>
   <script src="js/game_manager.js"></script>
   <script src="js/application.js"></script>
 </body>

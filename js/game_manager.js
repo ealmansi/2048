@@ -1,13 +1,16 @@
-function GameManager(size, InputManager, Actuator, StorageManager) {
+function GameManager(size, InputManager, Actuator, StorageManager, AIPlayer) {
   this.size           = size; // Size of the grid
   this.inputManager   = new InputManager;
   this.storageManager = new StorageManager;
   this.actuator       = new Actuator;
+  this.aiPlayer       = new AIPlayer(this);
 
   this.startTiles     = 2;
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
+  this.inputManager.on("beginAI", this.beginAI.bind(this));
+  this.inputManager.on("stopAI", this.stopAI.bind(this));
   this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
 
   this.setup();
@@ -18,6 +21,16 @@ GameManager.prototype.restart = function () {
   this.storageManager.clearGameState();
   this.actuator.continueGame(); // Clear the game won/lost message
   this.setup();
+};
+
+// Begin AI
+GameManager.prototype.beginAI = function () {
+  this.aiPlayer.startPlaying();
+};
+
+// Begin AI
+GameManager.prototype.stopAI = function () {
+  this.aiPlayer.stopPlaying();
 };
 
 // Keep playing after winning (allows going over 2048)
@@ -184,6 +197,7 @@ GameManager.prototype.move = function (direction) {
 
     if (!this.movesAvailable()) {
       this.over = true; // Game over!
+      this.aiPlayer.stopPlaying();
     }
 
     this.actuate();

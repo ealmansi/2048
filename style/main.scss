@@ -308,6 +308,11 @@ hr {
   }
 }
 
+#ai-move-function {
+  width: 100%;
+  height: 300px;
+}
+
 // End of game-field mixin
 @include game-field;
 
@@ -466,6 +471,28 @@ hr {
   display: block;
   text-align: center;
   float: right;
+  margin-right: 2px;
+  margin-top:5px;
+  margin-bottom: 5px;
+}
+
+.begin-ai-button {
+  @include button;
+  display: block;
+  text-align: center;
+  float: right;
+  margin-right: 2px;
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+.stop-ai-button {
+  @include button;
+  display: block;
+  text-align: center;
+  float: right;
+  margin-top:5px;
+  margin-bottom:5px;
 }
 
 .game-explanation {
@@ -519,6 +546,22 @@ hr {
   }
 
   .restart-button {
+    width: 42%;
+    padding: 0;
+    display: block;
+    box-sizing: border-box;
+    margin-top: 2px;
+  }
+
+  .begin-ai-button {
+    width: 42%;
+    padding: 0;
+    display: block;
+    box-sizing: border-box;
+    margin-top: 2px;
+  }
+
+  .stop-ai-button {
     width: 42%;
     padding: 0;
     display: block;
