@@ -16,6 +16,7 @@ function AIPlayer(gameManager) {
 			}
 		}
 		catch(err) {
+			alert(err);
 			console.log(err);
 			this.stopPlaying();
 		}
