@@ -500,6 +500,7 @@ hr {
   color: #f9f6f2;
   height: 40px;
   line-height: 42px;
+  background-color: #00e412;
   display: block;
   text-align: center;
   float: right;
@@ -516,6 +517,7 @@ hr {
   color: #f9f6f2;
   height: 40px;
   line-height: 42px;
+  background-color: #00e0ff;
   display: block;
   text-align: center;
   float: right;

@@ -478,6 +478,7 @@ hr {
 
 .begin-ai-button {
   @include button;
+  background-color: rgb(0, 228, 18);
   display: block;
   text-align: center;
   float: right;
@@ -488,6 +489,7 @@ hr {
 
 .stop-ai-button {
   @include button;
+  background-color: rgb(0, 224, 255);
   display: block;
   text-align: center;
   float: right;
